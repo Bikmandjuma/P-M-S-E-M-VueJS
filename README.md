@@ -1,4 +1,9 @@
-# jospher
+Predictive Maintenance System for Electric Motorcycles
+Electric motorcycles are a sustainable transportation solution, but maintaining their performance requires proactive diagnostics and timely servicing. This system integrates IoT and AI to predict maintenance needs, enhancing vehicle longevity and safety.
+
+===================================================
+
+# PMSEM
 
 ## Project setup
 ```
