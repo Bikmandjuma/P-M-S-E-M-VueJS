@@ -213,7 +213,7 @@ export default {
         pricing: false,
       },
       userData: {
-        user_name: '',
+        firstname: '',
         image: ''
       }
     };
@@ -223,10 +223,10 @@ export default {
       return this.$route.meta.pageTitle || "defult pageTitle"
     },
     truncatedUserName() {
-      if (!this.userData.user_name) return '.....';
-      return this.userData.user_name.length > 20 
-        ? this.userData.user_name.substring(0, 20) + '...' 
-        : this.userData.user_name;
+      if (!this.userData.firstname) return '.....';
+      return this.userData.firstname.length > 20 
+        ? this.userData.firstname.substring(0, 20) + '...' 
+        : this.userData.firstname;
     }
   },
   methods: {

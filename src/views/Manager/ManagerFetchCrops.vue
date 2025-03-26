@@ -26,22 +26,24 @@
                       <table class="table-auto w-full border-collapse border border-gray-300">
                         <thead>
                           <tr>
-                            <th class="px-4 py-2 border">N<sup>o</sup></th>
                             <th class="px-4 py-2 border">Temperature</th>
                             <th class="px-4 py-2 border">Vibration</th>
-                            <th class="px-4 py-2 border">Status</th>
+                            <th class="px-4 py-2 border">State</th>
+                           
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td colspan='4' class="text-center p-2">No data found in dataset</td>
+                          <tr v-for="(row, index) in paginatedData" :key="index">
+                            <td class="px-4 py-2 border">{{ row.temperature }}</td>
+                            <td class="px-4 py-2 border">{{ row.vibration }}</td>
+                            <td class="px-4 py-2 border">{{ row.state }}</td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
 
                     <!-- Pagination Controls -->
-                    <!--div class="flex justify-center mt-4">
+                    <div class="flex justify-center mt-4">
                       <button
                         @click="changePage(currentPage - 1)"
                         :disabled="currentPage === 1"
@@ -59,7 +61,7 @@
                       >
                         Next
                       </button>
-                    </div-->
+                    </div>
                   </div>
               
                 </div>
@@ -94,14 +96,10 @@
           const query = this.searchQuery.toLowerCase();
           return this.dataset.filter((row) => {
             return (
-              row.N.toString().includes(query) ||
-              row.P.toString().includes(query) ||
-              row.K.toString().includes(query) ||
-              row.ph.toString().includes(query) ||
-              row.label.toLowerCase().includes(query) ||
-              row.conductivity.toString().includes(query) ||
+              
+              row.state.toLowerCase().includes(query) ||
               row.temperature.toString().includes(query) ||
-              row.soil_moisture.toString().includes(query)
+              row.vibration.toString().includes(query)
             );
           });
         },

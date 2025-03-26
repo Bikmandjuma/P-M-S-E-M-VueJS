@@ -136,6 +136,26 @@
                                 />
                                 </div>
                                 <div>
+                                <label class="block font-medium" for="phone">Bike_model</label>
+                                <input
+                                    v-model="editForm.bike_model"
+                                    id="bike_model"
+                                    type="text"
+                                    class="w-full border rounded p-2"
+                                    placeholder="Enter bike_model"
+                                />
+                                </div>
+                                <div>
+                                <label class="block font-medium" for="phone">Plate_number</label>
+                                <input
+                                    v-model="editForm.plate_number"
+                                    id="plate_number"
+                                    type="text"
+                                    class="w-full border rounded p-2"
+                                    placeholder="Enter plate_number"
+                                />
+                                </div>
+                                <div>
                                 <label class="block font-medium" for="email">Email</label>
                                 <input
                                     v-model="editForm.email"
@@ -201,6 +221,8 @@ export default {
         lastname: '',
         gender: '',
         phone: '',
+        bike_model: '',
+        plate_number: '',
         email: '',
         birthdate: '',
       },
