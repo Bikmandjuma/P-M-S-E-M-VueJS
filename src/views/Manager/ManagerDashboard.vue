@@ -49,11 +49,8 @@
               </h3>
               <p v-if="!isInvalid" class="text-gray-500">Prediction : {{ prediction.predicted_probability }}</p>
               <h3 v-if="isInvalid" class="text-red-600 font-bold">
-                No crop is recommended for the given conditions.
+                No state is found for the given conditions.
               </h3>
-              <p v-if="isInvalid" class="text-gray-500" style="font-size:20px;">
-                The environment is unsuitable for farming.
-              </p>
             </template>
           </div>
         </div>
