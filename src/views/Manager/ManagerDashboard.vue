@@ -70,6 +70,7 @@ export default {
     return {
       isLoading: true,
       isInvalid: false,
+      hasSentWarningEmail: false, // Track if the email has been sent
       dataInputs: {
         temperature: 0,
         vibration: 0,
@@ -92,25 +93,62 @@ export default {
         console.error("Error fetching crop inputs:", error);
       }
     },
+
     async fetchCropPrediction() {
       try {
         // Fetch prediction data from the Flask API
         const response = await fetch(`${flaskApiUrl}/state`);
         const data = await response.json();
-        
+
         // Update prediction object with the fetched data
         this.prediction = {
           model_accuracy: data.model_accuracy,
           most_probable_state: data.most_probable_state,
-          predicted_probability: data.predicted_probability
+          predicted_probability: data.predicted_probability,
         };
 
         // Check for invalid conditions based on fetched data
         this.checkInvalidConditions();
+
+        // If the state is "Warning" and email has not been sent yet, send it
+        if (this.prediction.most_probable_state === "Warning" && !this.hasSentWarningEmail) {
+          this.triggerWarningEmail();
+          this.hasSentWarningEmail = true; // Mark email as sent
+        }
+
+        // Reset the flag when the state is back to normal
+        if (this.prediction.most_probable_state !== "Warning") {
+          this.hasSentWarningEmail = false;
+        }
+
       } catch (error) {
         console.error("Error fetching crop prediction:", error);
       }
     },
+
+    async triggerWarningEmail() {
+      try {
+        const token = localStorage.getItem("auth_token");
+
+        const response = await fetch(`${laravelApiUrl}/send-warning-email`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify({ state: "Warning" })
+        });
+
+        if (response.ok) {
+          console.log("Warning email sent successfully.");
+        } else {
+          console.error("Failed to send warning email.");
+        }
+      } catch (error) {
+        console.error("Error sending warning email:", error);
+      }
+    },
+
     checkInvalidConditions() {
       const { model_accuracy, predicted_probability } = this.prediction;
 
