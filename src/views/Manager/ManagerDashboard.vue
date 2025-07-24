@@ -42,17 +42,40 @@
             <h3 v-if="isLoading" class="text-blue-600 font-bold">Loading...</h3>
 
             <template v-if="!isLoading">
-              <h2>Motorcycle state</h2>
-              <hr>
-              <h3 v-if="!isInvalid">
-                State: <span class="font-bold text-blue-600">{{ prediction.most_probable_state }}</span>
-              </h3>
-              <p v-if="!isInvalid" class="text-gray-500">Prediction : {{ prediction.predicted_probability }}</p>
-              <p v-if="!isInvalid" class="text-gray-500">Accuracy : {{ prediction.model_accuracy }}%</p>
-              <h3 v-if="isInvalid" class="text-red-600 font-bold">
-                No state is found for the given conditions.
-              </h3>
+              <div class="text-center">
+                <h2 class="flex items-center justify-center gap-2">
+                  <i class="fas fa-motorcycle text-gray-500"></i>
+                  Motorcycle State
+                </h2>
+                <hr class="my-2" />
+
+                <h3 v-if="!isInvalid" class="flex items-center justify-center gap-2">
+                  <i :class="stateIconClass"></i>
+                  State:
+                  <span class="font-bold text-blue-600">
+                    <!-- {{ prediction.most_probable_state }} -->
+                    {{ prediction.most_probable_state?.trim() || 'No state' }}
+                  </span>
+                  
+                </h3>
+
+                <p v-if="!isInvalid" class="text-gray-500 flex justify-center items-center gap-2">
+                  <i class="fas fa-bullseye text-indigo-500"></i>
+                  Confidence: {{ (prediction.predicted_probability * 100).toFixed(2) }}%
+                </p>
+
+                <p v-if="!isInvalid" class="text-gray-500 flex justify-center items-center gap-2">
+                  <i class="fas fa-percentage text-purple-500"></i>
+                  Model accuracy: {{ prediction.model_accuracy }}%
+                </p>
+
+                <h3 v-if="isInvalid" class="text-red-600 font-bold flex justify-center items-center gap-2">
+                  <i class="fas fa-ban text-red-600"></i>
+                  No state is found for the given conditions.
+                </h3>
+              </div>
             </template>
+
           </div>
         </div>
       </div>
@@ -81,6 +104,23 @@ export default {
         predicted_probability: 0
       }
     };
+  },
+  computed: {
+    stateIconClass() {
+      const state = this.prediction.most_probable_state?.trim().toLowerCase();
+
+      switch(state) {
+        case 'warning':
+          return 'fas fa-exclamation-triangle text-yellow-500';
+        case 'healthy':
+          return 'fas fa-check-circle text-green-500';
+        case 'failing':
+          return 'fas fa-times-circle text-red-600';
+        default:
+          return 'fas fa-question-circle text-gray-400';
+      }
+    }
+
   },
   methods: {
     async fetchDataInputs() {
@@ -152,7 +192,6 @@ export default {
     checkInvalidConditions() {
       const { model_accuracy, predicted_probability } = this.prediction;
 
-      // Set the condition to invalid if model_accuracy is 0 or probability is too low
       this.isInvalid = model_accuracy === 0 || predicted_probability <= 0;
 
       if (this.isInvalid) {
