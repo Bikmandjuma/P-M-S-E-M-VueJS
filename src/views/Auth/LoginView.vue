@@ -39,6 +39,14 @@
 
             <hr class="my-8" />
             <div id="forgot_pswd">
+
+              <p class="mt-4">
+                Do not have an account
+                <router-link class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" to="/register">
+                  <i class="fa fa-user"></i>&nbsp;Register
+                </router-link>
+              </p>
+
               <p class="mt-4">
                 <router-link class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" to="/forgot_password">
                   <i class="fa fa-key"></i>&nbsp;Forgot your password?

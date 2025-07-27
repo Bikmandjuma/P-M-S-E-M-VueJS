@@ -16,6 +16,9 @@ import ManagerPassword from '../views/Manager/ManagerPassword.vue';
 import ManagerUpdateInfo from '../views/Manager/ManagerUpdateInfo.vue';
 import ManagerResetCodePassword from '../views/Auth/CodeToResetPassword.vue';
 import ManagerResetPassword from '../views/Auth/ResetPassword.vue';
+import ManagerRegister from '../views/Auth/RegisterView.vue';
+import ManagerCodeToRegister from '../views/Auth/CodeToRegister.vue';
+import ManagerFillInfo from '../views/Auth/UserFill_Info.vue';
 
 const routes = [
   {
@@ -33,6 +36,27 @@ const routes = [
   },
 
   {
+    path: '/register',
+    name: 'Register',
+    component: ManagerRegister,
+    meta: { layout: DefaultLayout },
+  },
+
+  {
+    path: '/codeToRegister',
+    name: 'CodeToRegister',
+    component: ManagerCodeToRegister,
+    meta: { layout: DefaultLayout },
+  },
+
+  {
+    path: '/userFillInfo',
+    name: 'UserFillInfo',
+    component: ManagerFillInfo,
+    meta: { layout: DefaultLayout },
+  },
+
+  {
     path: '/forgot_password',
     name: 'ForgotPassword',
     component: ForgotPassword,
@@ -45,6 +69,7 @@ const routes = [
     component: AdminDashboard,
     meta: { layout: AdminLayout , requiresAuth : true},
   },
+  
   {
     path: '/Manager/dashboard',
     name: 'ManagerDashboard',
