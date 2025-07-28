@@ -5,7 +5,7 @@
         <table class="table-auto w-full border">
           <thead class="bg-gray-100">
             <tr>
-              <th class="px-4 py-2 border">#</th>
+              <th class="px-4 py-2 border">N<sup>o</sup></th>
               <th class="px-4 py-2 border">Temperature (°C)</th>
               <th class="px-4 py-2 border">Vibration</th>
               <th class="px-4 py-2 border">Created At</th>
