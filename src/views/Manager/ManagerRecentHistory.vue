@@ -13,28 +13,27 @@
             </tr>
           </thead>
           <tbody>
-            <tr
-              v-for="(item, index) in paginatedData"
-              :key="item.id"
-            >
-              <td class="px-4 py-2 border">{{ index + 1 + (currentPage - 1) * pageSize }}</td>
-              <td class="px-4 py-2 border">{{ item.temperature }}</td>
-              <td class="px-4 py-2 border">{{ item.vibration }}</td>
-              <td class="px-4 py-2 border">{{ formatDate(item.created_at) }}</td>
-              <td class="px-4 py-2 border">
+  
+            <tr v-for="(item, index) in paginatedData" :key="item.id">
+                <td class="px-4 py-2 border">{{ index + 1 + (currentPage - 1) * pageSize }}</td>
+                <td class="px-4 py-2 border">{{ Number(item.temperature).toFixed(2) }}</td>
+                <td class="px-4 py-2 border">{{ Number(item.vibration).toFixed(2) }}</td>
+                <td class="px-4 py-2 border">{{ formatDate(item.created_at) }}</td>
+                <td class="px-4 py-2 border">
                 <span
-                  :class="{
+                    :class="{
                     'text-green-600 font-bold': getStatus(item) === 'Healthy',
                     'text-yellow-600 font-bold': getStatus(item) === 'Warning',
                     'text-red-600 font-bold': getStatus(item) === 'Failing',
                     'text-gray-600 font-bold': getStatus(item) === 'Unknown'
-                  }"
+                    }"
                 >
-                  {{ getStatus(item) }}
+                    {{ getStatus(item) }}
                 </span>
-              </td>
+                </td>
             </tr>
-          </tbody>
+            </tbody>
+
         </table>
   
         <!-- No data message -->
