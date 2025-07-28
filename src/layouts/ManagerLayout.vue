@@ -37,10 +37,10 @@
               <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
               </svg>
-              <span class="ml-2 text-sm text-white">Dataset</span>
+              <span class="ml-2 text-sm text-white">History</span>
             </a>
             <div v-show="open.jobs" class="mt-2 space-y-2 px-7">
-              <a href="/Manager/fetch_dataset" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-white dark:hover:text-light">data's dataset</a>
+              <a href="/Manager/recentHistory" class="block p-2 text-sm text-gray-400 dark:text-gray-400 hover:text-white dark:hover:text-light">Recent History</a>
             </div>
           </div>
           

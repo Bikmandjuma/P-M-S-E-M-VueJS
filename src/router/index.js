@@ -8,6 +8,7 @@ import Login from '../views/Auth/LoginView.vue';
 import ForgotPassword from '../views/Auth/ForgotPasswordView.vue';
 import AdminDashboard from '../views/Admin/AdminDashboard.vue';
 import ManagerDashboard from '../views/Manager/ManagerDashboard.vue';
+import ManagerRecentHistory from '../views/Manager/ManagerRecentHistory.vue';
 import ManagerInformation from '../views/Manager/ManagerInformation.vue';
 import ManagerProfile from '../views/Manager/ManagerProfile.vue';
 import FetchDataset from '../views/Manager/ManagerFetchCrops.vue';
@@ -76,7 +77,12 @@ const routes = [
     component: ManagerDashboard,
     meta: { layout: ManagerLayout , requiresAuth : true,pageTitle: "Dashboard" },
   },
-
+  {
+    path: '/Manager/recentHistory',
+    name: 'ManagerRecentHistory',
+    component: ManagerRecentHistory,
+    meta: { layout: ManagerLayout , requiresAuth : true,pageTitle: "History" },
+  },
   {
     path: '/Manager/information',
     name: 'ManagerInformation',
